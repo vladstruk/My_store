@@ -38,3 +38,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'pry'
+
+gem 'better_errors', '1.1.0'
+
+gem "binding_of_caller", '0.7.2'
