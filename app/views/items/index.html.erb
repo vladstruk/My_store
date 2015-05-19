@@ -1,16 +1,22 @@
-<h1> Create new item </h1>
+ <h1> Create new item </h1>
 
-<%= form_for @item do |f| %>
+<ul>
+  <% @item.errors.each do |field, message| %>
+    <li> <%= "#{field.capitalize} #{message}." %> </li>
+  <% end %>
+</ul>
 
-<p> Name <br/> <%= f.text_field :name %> </p>
-<p> Price <br/> <%= f.text_field :price %> </p>
-<p> Description <br/> <%= f.text_field :description %> </p>
-<p> Weight <br/> <%= f.text_field :weight %> </p>
-
-<p> <%= f.submit "Create item" %> </p>
-
-<% end %>
-
+ 
+ 
+  <%= form_for @item do |f| %>
+    <p> Name <br/> <%= f.text_field :name %> </p>
+    <p class="color" > <%= error_message(@item, :name) %> </p>
+    <p> Price <br/> <%= f.text_field :price %> </p>
+    <p class="color" > <%= error_message(@item, :price) %> </p>
+    <p> Description <br/> <%= f.text_field :description %> </p>
+    <p> Weight <br/> <%= f.text_field :weight %> </p>
+    <p> <%= f.submit "Create item" %> </p>
+  <% end %>
 
 
 <h1> Items </h1>
@@ -20,6 +26,7 @@
     <th> Item id </th>
     <th> Name </th>
     <th> </th>
+    <th> </th>
   </tr>
 
   <% @items.each do |i| %>
@@ -28,6 +35,7 @@
     <td> <%= i.id %> </td>
     <td> <%= link_to i.name, item_path(i) %> </td>
     <td> <%= link_to "Delete", i, method: :delete, data: { confirm: "Delete?" } %> </td>
+    <td> <%= link_to "Edit", edit_item_path(i.id) %> </td>
   </tr>
 
   <% end %>
