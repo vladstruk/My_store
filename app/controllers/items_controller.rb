@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def index
     #items = Item.all
     #render text: items.map { |i| "#{i.name} - #{i.price}"}.join("<br/>")
-    
+    @item = Item.new
     @items = Item.all
   end
 
@@ -17,9 +17,6 @@ class ItemsController < ApplicationController
   end
 
   # /items/new GET
-  def new
-    @item = Item.new
-  end
 
   # /items/1/edit GET
   def edit
@@ -31,12 +28,9 @@ class ItemsController < ApplicationController
     #                   weight: params[:weight], real: params[:real])
     #render text: "#{item.id}. #{item.name}: #{item.price}" 
 
-    @item = Item.create(params[:item])
-    if @item.errors.empty?
-      redirect_to item_path(@item)
-    else
-      render "new"
-    end
+    @item = Item.new(params[:item])
+    @item.save
+    redirect_to items_path
   end
 
   # /items/1 PUT
