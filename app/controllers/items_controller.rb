@@ -24,11 +24,12 @@ class ItemsController < ApplicationController
 
   #/items POST
   def create
-    @items = Item.all
     @item = Item.new(params[:item])
-    @item.save
-    if @item.errors.empty?
+    if @item.save
       redirect_to items_path
+    else
+      @items = Item.all
+      render :index
     end
   end
 
