@@ -24,13 +24,12 @@ class ItemsController < ApplicationController
 
   #/items POST
   def create
-    #item = Item.create(name: params[:name], price: params[:price], description: params[:description],
-    #                   weight: params[:weight], real: params[:real])
-    #render text: "#{item.id}. #{item.name}: #{item.price}" 
-
+    @items = Item.all
     @item = Item.new(params[:item])
     @item.save
-    redirect_to items_path
+    if @item.errors.empty?
+      redirect_to items_path
+    end
   end
 
   # /items/1 PUT
@@ -52,4 +51,5 @@ class ItemsController < ApplicationController
   def find_by_id
     @item = Item.find(params[:id])
   end
+
 end
