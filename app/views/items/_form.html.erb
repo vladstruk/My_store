@@ -1,0 +1,26 @@
+ <%= form_for @item do |f| %>
+   <p>
+     <%= f.label :name %> <br/>
+     <%= f.text_field :name %>
+   </p>
+   <p class="color" > <%= error_message(@item, :name) %> </p>
+
+   <p>
+     <%= f.label :price %> <br/>
+     <%= f.text_field :price %>
+   </p>
+   <p class="color" > <%= error_message(@item, :price) %> </p>
+
+   <p>
+     <%= f.label :description %> <br/>
+     <%= f.text_field :description %>
+   </p>
+
+   <p>
+     <%= f.label :weight %> <br/>
+     <%= f.text_field :weight %>
+   </p>
+
+   <p> <%= f.submit %> </p>
+ <% end %>
+   
